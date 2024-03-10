@@ -5,8 +5,10 @@ function App() {
   return (
     // Car wreckers section
     // space-x-8
-    <div className="mx-auto max-w-7xl p-8">
+    <div className="mx-auto max-w-7xl p-4">
       <nav>Carwreckers</nav>
+      {/* Hero area */}
+      <h1>Car wreckers in Perth ready to help you</h1>
       {/* Carwrecker overview section */}
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
         {carwreckers.map((carwrecker, key) => {

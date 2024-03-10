@@ -344,7 +344,7 @@ const carwreckers = [
   {
     wreckername: "Swan Auto",
     address: "31 Austin Ave, Maddington WA 6109",
-    email: "sales@swanauto.com.au",
+    email: "sales@SWANAUTO.COM.AU",
     phone: "08 9493 3555",
     website: "swanauto.com.au",
     url: "https://www.swanauto.com.au/"
