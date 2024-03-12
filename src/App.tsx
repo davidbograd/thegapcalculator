@@ -1,4 +1,5 @@
 import CarwreckerCard from "./Components/CarwreckerCard";
+import SiteLogo from "./Components/SiteLogo.tsx";
 import carwreckers from "./carwreckerData";
 
 function App() {
@@ -6,11 +7,31 @@ function App() {
     // Car wreckers section
     // space-x-8
     <div className="mx-auto max-w-7xl p-4">
-      <nav>Carwreckers</nav>
+      <nav>
+        <SiteLogo />
+      </nav>
+
       {/* Hero area */}
-      <h1>Car wreckers in Perth ready to help you</h1>
+      <div className="my-10 md:my-20">
+        <h1 className="text-slate-800 text-3xl md:text-5xl font-semibold mb-2">
+          Find the car wrecker in Perth for you
+        </h1>
+        <p className="text-slate-600 text-lg md:text-2xl font-regular">
+          Easy access to {carwreckers.length} car wreckers in Perth, Western
+          Australia
+        </p>
+        <div className="flex flex-wrap mt-4 md:mt-8">
+          <button className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 active:bg-orange-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white">
+            Find car parts
+          </button>
+          <button className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 active:bg-orange-700 px-6 md:px-8 py-2 mt-2 text-m md:text-xl rounded-full font-medium text-white">
+            Sell your car
+          </button>
+        </div>
+      </div>
+
       {/* Carwrecker overview section */}
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {carwreckers.map((carwrecker, key) => {
           return (
             <CarwreckerCard

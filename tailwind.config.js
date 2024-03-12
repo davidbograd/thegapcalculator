@@ -5,10 +5,14 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+   
     extend: {
       fontFamily: {
         body: "Manrope"
-      }
+      },
+      colors: {
+        'orange-brand': "#EB433D",
+      },
     },
   },
   plugins: [],
