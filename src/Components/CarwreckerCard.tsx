@@ -38,7 +38,7 @@ const CarwreckerCard = ({
           <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
           <path d="M3 7l9 6l9 -6" />
         </svg>
-        <p className="text-slate-700">{email}</p>
+        <p className="text-slate-700 truncate">{email}</p>
         {email !== "-" && (
           <button className="bg-slate-500 hover:bg-slate-600 focus:outline-none focus:ring focus:ring-slate-300 active:bg-slate-700 px-3 py-1 ml-2 text-xs leading-5 rounded-full font-semibold text-white">
             Copy
@@ -46,7 +46,7 @@ const CarwreckerCard = ({
         )}
       </div>
 
-      <div className="flex items-center">
+      <div className="flex items-center mt-1">
         <svg
           className="mr-2 stroke-slate-400"
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ const CarwreckerCard = ({
       </div>
 
       {/* Website */}
-      <div className="flex items-center">
+      <div className="flex items-center mt-1">
         <svg
           className="mr-2 stroke-slate-400 w-4 h-4"
           xmlns="http://www.w3.org/2000/svg"
