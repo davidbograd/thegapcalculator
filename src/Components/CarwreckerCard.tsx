@@ -1,7 +1,6 @@
 import IconEmail from "./Icons/IconEmail.tsx";
 import IconPhone from "./Icons/IconPhone.tsx";
 import IconGlobe from "./Icons/IconGlobe.tsx";
-import React, { MouseEventHandler } from "react";
 
 interface Props {
   wreckername: string;
