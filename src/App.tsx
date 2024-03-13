@@ -1,5 +1,5 @@
 import CarwreckerCard from "./Components/CarwreckerCard";
-import SiteLogo from "./Components/SiteLogo.tsx";
+import SiteLogo from "./Components/Icons/SiteLogo.tsx";
 import carwreckers from "./carwreckerData";
 
 function App() {
