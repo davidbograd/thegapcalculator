@@ -22,12 +22,12 @@ function App() {
         </p>
         <div className="flex flex-wrap mt-4 md:mt-8">
           <a href="https://tally.so/r/3xpJPr" target="_blank">
-            <button className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 active:bg-orange-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white">
+            <button className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white">
               Find car parts
             </button>
           </a>
           <a href="https://tally.so/r/npKD7q" target="_blank">
-            <button className="bg-orange-500 hover:bg-orange-600 focus:outline-none focus:ring focus:ring-orange-300 active:bg-orange-700 px-6 md:px-8 py-2 mt-2 text-m md:text-xl rounded-full font-medium text-white">
+            <button className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 text-m md:text-xl rounded-full font-medium text-white">
               Sell your car
             </button>
           </a>
