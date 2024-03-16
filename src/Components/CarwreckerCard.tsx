@@ -1,6 +1,7 @@
 import IconEmail from "./Icons/IconEmail.tsx";
 import IconPhone from "./Icons/IconPhone.tsx";
 import IconGlobe from "./Icons/IconGlobe.tsx";
+import { useState } from "react";
 
 interface Props {
   wreckername: string;
@@ -19,8 +20,15 @@ const CarwreckerCard = ({
   website,
   url,
 }: Props) => {
+  // copyLabel is the value you set after useState. setCopyLabel updates the value.
+  const [copyLabel, setCopyLabel] = useState("Copy");
   const handleButtonClickCopyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
+    setCopyLabel("✅");
+    // After 2 sec, reset label
+    setTimeout(() => {
+      setCopyLabel("Copy");
+    }, 2000);
   };
 
   return (
@@ -35,9 +43,9 @@ const CarwreckerCard = ({
         {email !== "-" && (
           <button
             onClick={() => handleButtonClickCopyEmail(email)}
-            className="bg-slate-500 hover:bg-slate-600 focus:outline-none focus:ring focus:ring-slate-300 active:bg-slate-700 px-3 py-1 ml-2 text-xs leading-5 rounded-full font-semibold text-white"
+            className="bg-slate-500 hover:bg-slate-600 active:bg-slate-700 px-3 py-1 ml-2 text-xs leading-5 rounded-full font-semibold text-white"
           >
-            Copy
+            {copyLabel}
           </button>
         )}
       </div>
