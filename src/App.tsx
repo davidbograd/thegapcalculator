@@ -3,6 +3,15 @@ import SiteLogo from "./Components/Icons/SiteLogo.tsx";
 import carwreckers from "./carwreckerData";
 
 function App() {
+  const sellYourCarEvent = () => {
+    console.log("Sell your car was clicked");
+    window.beam("/custom-events/sell_car_clicked");
+  };
+  const findCarParts = () => {
+    console.log("Find parts was clicked");
+    window.beam("/custom-events/find_parts_clicked");
+  };
+
   return (
     // Car wreckers section
     // space-x-8
@@ -22,12 +31,18 @@ function App() {
         </p>
         <div className="flex flex-wrap mt-4 md:mt-8">
           <a href="https://tally.so/r/3xpJPr" target="_blank">
-            <button className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white">
+            <button
+              className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white"
+              onClick={findCarParts}
+            >
               Find car parts
             </button>
           </a>
           <a href="https://tally.so/r/npKD7q" target="_blank">
-            <button className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 text-m md:text-xl rounded-full font-medium text-white">
+            <button
+              className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 text-m md:text-xl rounded-full font-medium text-white"
+              onClick={sellYourCarEvent}
+            >
               Sell your car
             </button>
           </a>
