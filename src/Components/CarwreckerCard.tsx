@@ -25,7 +25,7 @@ const CarwreckerCard = ({
   const handleButtonClickCopyEmail = (email: string) => {
     navigator.clipboard.writeText(email);
     setCopyLabel("✅");
-    window.beam("/custom-events/copied_email");
+    // window.beam("/custom-events/copied_email");
     // After 2 sec, reset label
     setTimeout(() => {
       setCopyLabel("Copy");

@@ -5,11 +5,11 @@ import carwreckers from "./carwreckerData";
 function App() {
   const sellYourCarEvent = () => {
     console.log("Sell your car was clicked");
-    window.beam("/custom-events/sell_car_clicked");
+    // window.beam("/custom-events/sell_car_clicked");
   };
   const findCarParts = () => {
     console.log("Find parts was clicked");
-    window.beam("/custom-events/find_parts_clicked");
+    // window.beam("/custom-events/find_parts_clicked");
   };
 
   return (
