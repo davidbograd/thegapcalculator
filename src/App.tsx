@@ -51,19 +51,22 @@ function App() {
 
       {/* Carwrecker overview section */}
       <div className="grid sm: grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {carwreckers.map((carwrecker, key) => {
-          return (
-            <CarwreckerCard
-              key={key}
-              wreckername={carwrecker.wreckername}
-              address={carwrecker.address}
-              email={carwrecker.email}
-              phone={carwrecker.phone}
-              website={carwrecker.website}
-              url={carwrecker.url}
-            />
-          );
-        })}
+        {carwreckers
+          // Sort alphabetically
+          .sort((a, b) => (a.wreckername > b.wreckername ? 1 : -1))
+          .map((carwrecker, key) => {
+            return (
+              <CarwreckerCard
+                key={key}
+                wreckername={carwrecker.wreckername}
+                address={carwrecker.address}
+                email={carwrecker.email}
+                phone={carwrecker.phone}
+                website={carwrecker.website}
+                url={carwrecker.url}
+              />
+            );
+          })}
       </div>
     </div>
   );
