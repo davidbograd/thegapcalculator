@@ -14,10 +14,25 @@ function App() {
 
   return (
     // Car wreckers section
-    // space-x-8
-    <div className="mx-auto max-w-7xl p-4">
-      <nav>
-        <SiteLogo />
+    <div className="mx-auto max-w-7xl p-4 lg:pt-8">
+      <nav className="flex items-center justify-between">
+        <a href="#">
+          <SiteLogo />
+        </a>
+        <div className="">
+          <a
+            href="#"
+            className="mr-4 lg:mr-8text-lg font-semibold text-slate-700 hover:text-sky-500"
+          >
+            Find parts
+          </a>
+          <a
+            href="#"
+            className="text-lg font-semibold text-slate-700 hover:text-sky-500"
+          >
+            Sell car
+          </a>
+        </div>
       </nav>
 
       {/* Hero area */}
