@@ -22,13 +22,13 @@ function App() {
         <div className="">
           <a
             href="#"
-            className="mr-4 lg:mr-8text-lg font-semibold text-slate-700 hover:text-sky-500"
+            className="text-md lg:text-lg font-semibold text-slate-700 hover:text-sky-500 mr-4 lg:mr-8"
           >
             Find parts
           </a>
           <a
             href="#"
-            className="text-lg font-semibold text-slate-700 hover:text-sky-500"
+            className="text-md lg:text-lg font-semibold text-slate-700 hover:text-sky-500"
           >
             Sell car
           </a>
