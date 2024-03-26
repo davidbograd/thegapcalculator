@@ -3,15 +3,6 @@ import SiteLogo from "./Components/Icons/SiteLogo.tsx";
 import carwreckers from "./carwreckerData";
 
 function App() {
-  const sellYourCarEvent = () => {
-    console.log("Sell your car was clicked");
-    // window.beam("/custom-events/sell_car_clicked");
-  };
-  const findCarParts = () => {
-    console.log("Find parts was clicked");
-    // window.beam("/custom-events/find_parts_clicked");
-  };
-
   return (
     // Car wreckers section
     <div className="mx-auto max-w-7xl p-4 lg:pt-8">
@@ -46,10 +37,7 @@ function App() {
         </p>
         <div className="flex flex-wrap mt-4 md:mt-8">
           <a href="https://tally.so/r/3xpJPr" target="_blank">
-            <button
-              className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white"
-              onClick={findCarParts}
-            >
+            <button className="bg-sky-500 hover:bg-sky-600 focus:outline-none focus:ring focus:ring-sky-300 active:bg-sky-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-medium text-white">
               Find car parts
             </button>
           </a>
