@@ -29,7 +29,8 @@ export function LeaveCostCalc(
   };
 
   const superannuationRate = 0.11;
-  const govWeekRate = 882.75;
+  // If salary is over $168865, set gov paid to 0.
+  const govWeekRate = LeaveDetails.salary > 168865 ? 0 : 882.75;
   const companyPaidWeekRate = LeaveDetails.salary / 52;
 
   function IncomeAndLossCalculator(
