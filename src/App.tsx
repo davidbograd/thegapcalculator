@@ -102,7 +102,7 @@ function App() {
                   required
                   value={totalLeave}
                   onChange={(e) => setTotalLeave(e.target.value)}
-                  placeholder="Eg '26'"
+                  placeholder="Eg '40'"
                   name="totalLeave"
                 />
                 <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
