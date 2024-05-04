@@ -1,6 +1,6 @@
 import { useState } from "react";
 import SiteLogo from "./Components/SiteLogo.tsx";
-import { LeaveCostCalc } from "/Users/David/Developer/Paternity leave/paternity-leave/src/Components/calculation";
+import { LeaveCostCalc } from "/Users/David/Developer/Paternity leave/paternity-leave/src/Components/calculation.ts";
 
 function App() {
   console.log("App ran");
