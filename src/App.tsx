@@ -3,34 +3,41 @@ import SiteLogo from "./Components/SiteLogo.tsx";
 import { LeaveCostCalc } from "/Users/David/Developer/Paternity leave/paternity-leave/src/Components/calculation";
 
 function App() {
+  console.log("App ran");
   const [salary, setSalary] = useState("");
   const [totalLeave, setTotalLeave] = useState("");
   const [companyPaidLeave, setCompanyPaidLeave] = useState("");
-  const [result, setResult] = useState(LeaveCostCalc(0, 0, 0, 0));
+  const [result, setResult] = useState(() => LeaveCostCalc(0, 0, 0, 0));
   const [resultShowing, setResultShowing] = useState(false);
 
   const handleButtonClick = () => {
-    console.log("I ran");
-    const salaryValue = parseFloat(salary);
-    const totalLeaveValue = parseFloat(totalLeave);
-    const companyPaidLeaveValue = parseFloat(companyPaidLeave);
-    setResult(
-      LeaveCostCalc(salaryValue, totalLeaveValue, companyPaidLeaveValue, 20)
-    );
+    console.log("Clickhandler ran");
+    if (salary == "" || totalLeave == "" || companyPaidLeave == "") {
+      alert("Please fill in all details");
+      return;
+    } else {
+      const salaryValue = parseFloat(salary);
+      const totalLeaveValue = parseFloat(totalLeave);
+      const companyPaidLeaveValue = parseFloat(companyPaidLeave);
+      setResult(
+        LeaveCostCalc(salaryValue, totalLeaveValue, companyPaidLeaveValue, 20)
+      );
 
-    function showResult() {
-      setResultShowing(true);
+      function showResult() {
+        setResultShowing(true);
 
-      const element = document.getElementById("calculatedResult"); // Get the DIV element
-      element?.classList.remove("hidden"); // Remove hide class
+        const element = document.getElementById("calculatedResult"); // Get the DIV element
+        element?.classList.remove("hidden"); // Remove hide class
 
-      const placeholder = document.getElementById("resultPlaceholder"); // Get the DIV element
-      placeholder?.classList.add("hidden"); // Add hide class
+        const placeholder = document.getElementById("resultPlaceholder"); // Get the DIV element
+        placeholder?.classList.add("hidden"); // Add hide class
 
-      const calculationDetails = document.getElementById("calculationDetails"); // Get the DIV element
-      calculationDetails?.classList.remove("opacity-50"); // Remove opacity class
+        const calculationDetails =
+          document.getElementById("calculationDetails"); // Get the DIV element
+        calculationDetails?.classList.remove("opacity-50"); // Remove opacity class
+      }
+      showResult();
     }
-    showResult();
   };
 
   return (
@@ -56,7 +63,7 @@ function App() {
         <div className="max-w-4xl m-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-16">
           {/* calculator */}
           <div className="max-w-sm bg-zinc-100 p-6 rounded-md">
-            <form className="">
+            <form className="" name="form">
               {/* input */}
               <label
                 htmlFor="salary"
@@ -76,6 +83,7 @@ function App() {
                   value={salary}
                   onChange={(e) => setSalary(e.target.value)}
                   placeholder="Enter annual salary"
+                  name="salary"
                 />
               </div>
 
@@ -95,6 +103,7 @@ function App() {
                   value={totalLeave}
                   onChange={(e) => setTotalLeave(e.target.value)}
                   placeholder="Eg '26'"
+                  name="totalLeave"
                 />
                 <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
                   weeks
@@ -117,6 +126,7 @@ function App() {
                   value={companyPaidLeave}
                   onChange={(e) => setCompanyPaidLeave(e.target.value)}
                   placeholder="Eg '4'"
+                  name="companyLeave"
                 />
                 <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
                   weeks
