@@ -4,6 +4,12 @@ import { LeaveCostCalc } from "./Components/calculation.ts";
 
 function App() {
   console.log("App ran");
+  const [personData, setPersonData] = useState([
+    { salary: "", totalLeave: "", companyPaidLeave: "" },
+    { salary: "", totalLeave: "", companyPaidLeave: "" },
+  ]);
+
+  console.log(personData);
   const [salary, setSalary] = useState("");
   const [totalLeave, setTotalLeave] = useState("");
   const [companyPaidLeave, setCompanyPaidLeave] = useState("");
