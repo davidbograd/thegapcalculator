@@ -10,6 +10,18 @@ function App() {
   const [result, setResult] = useState(() => LeaveCostCalc(0, 0, 0, 0));
   const [resultShowing, setResultShowing] = useState(false);
 
+  // Restrict input to numbers
+  const handleChange = (
+    inputValue: string,
+    setValue: React.Dispatch<React.SetStateAction<string>>
+  ) => {
+    const inputRegex = /^[0-9]*$/; // Regular expression to match only numbers
+
+    if (inputRegex.test(inputValue) || inputValue === "") {
+      setValue(inputValue);
+    }
+  };
+
   const handleButtonClick = () => {
     console.log("Clickhandler ran");
     if (salary == "" || totalLeave == "" || companyPaidLeave == "") {
@@ -64,73 +76,83 @@ function App() {
           {/* calculator */}
           <div className="max-w-sm bg-zinc-100 p-6 rounded-md">
             <form className="" name="form">
-              {/* input */}
-              <label
-                htmlFor="salary"
-                className="block text-gray-700 text-base font-bold mb-1"
-              >
-                Annual salary
-              </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-700">
-                  $
-                </span>
-                <input
-                  className="border rounded w-full py-2 pl-8 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="salary"
-                  type="text"
-                  required
-                  value={salary}
-                  onChange={(e) => setSalary(e.target.value)}
-                  placeholder="Enter annual salary"
-                  name="salary"
-                />
-              </div>
+              {/* Primary */}
+              <div>
+                <p className="text-xs text-slate-500 font-bold mb-4">
+                  PRIMARY CARER
+                </p>
+                {/* input */}
+                <label
+                  htmlFor="salary"
+                  className="block text-gray-700 text-base font-bold mb-1"
+                >
+                  Annual salary
+                </label>
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-700">
+                    $
+                  </span>
+                  <input
+                    className="border rounded w-full py-2 pl-8 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="salary"
+                    type="text"
+                    required
+                    value={salary}
+                    onChange={(e) => handleChange(e.target.value, setSalary)}
+                    placeholder="Enter annual salary"
+                    name="salary"
+                  />
+                </div>
 
-              {/* input */}
-              <label
-                htmlFor="total-leave"
-                className="block text-gray-700 text-base font-bold mt-8 mb-1"
-              >
-                Total leave (in weeks)
-              </label>
-              <div className="relative">
-                <input
-                  className="border rounded w-full py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="total-leave"
-                  type="text"
-                  required
-                  value={totalLeave}
-                  onChange={(e) => setTotalLeave(e.target.value)}
-                  placeholder="Eg '40'"
-                  name="totalLeave"
-                />
-                <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
-                  weeks
-                </span>
-              </div>
+                {/* input */}
+                <label
+                  htmlFor="total-leave"
+                  className="block text-gray-700 text-base font-bold mt-8 mb-1"
+                >
+                  Total leave (in weeks)
+                </label>
+                <div className="relative">
+                  <input
+                    className="border rounded w-full py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="total-leave"
+                    type="text"
+                    required
+                    value={totalLeave}
+                    onChange={(e) =>
+                      handleChange(e.target.value, setTotalLeave)
+                    }
+                    placeholder="Eg '40'"
+                    name="totalLeave"
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
+                    weeks
+                  </span>
+                </div>
 
-              {/* input */}
-              <label
-                htmlFor="company-paid-leave"
-                className="block text-gray-700 font-bold mt-8 mb-1"
-              >
-                Company paid leave
-              </label>
-              <div className="relative">
-                <input
-                  className="border rounded w-full py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                  id="company-paid-leave"
-                  type="text"
-                  required
-                  value={companyPaidLeave}
-                  onChange={(e) => setCompanyPaidLeave(e.target.value)}
-                  placeholder="Eg '4'"
-                  name="companyLeave"
-                />
-                <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
-                  weeks
-                </span>
+                {/* input */}
+                <label
+                  htmlFor="company-paid-leave"
+                  className="block text-gray-700 font-bold mt-8 mb-1"
+                >
+                  Company paid leave
+                </label>
+                <div className="relative">
+                  <input
+                    className="border rounded w-full py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="company-paid-leave"
+                    type="text"
+                    required
+                    value={companyPaidLeave}
+                    onChange={(e) =>
+                      handleChange(e.target.value, setCompanyPaidLeave)
+                    }
+                    placeholder="Eg '4'"
+                    name="companyLeave"
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
+                    weeks
+                  </span>
+                </div>
               </div>
             </form>
             <button
