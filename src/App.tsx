@@ -3,13 +3,11 @@ import SiteLogo from "./Components/SiteLogo.tsx";
 import { LeaveCostCalc } from "./Components/calculation.ts";
 
 function App() {
-  console.log("App ran");
-  const [personData, setPersonData] = useState([
-    { salary: "", totalLeave: "", companyPaidLeave: "" },
-    { salary: "", totalLeave: "", companyPaidLeave: "" },
-  ]);
+  // const [peopleData, setPeopleData] = useState([
+  //   { salary: "", totalLeave: "", companyPaidLeave: "" },
+  //   { salary: "", totalLeave: "", companyPaidLeave: "" },
+  // ]);
 
-  console.log(personData);
   const [salary, setSalary] = useState("");
   const [totalLeave, setTotalLeave] = useState("");
   const [companyPaidLeave, setCompanyPaidLeave] = useState("");
@@ -135,7 +133,6 @@ function App() {
                   </span>
                 </div>
 
-                {/* input */}
                 <label
                   htmlFor="company-paid-leave"
                   className="block text-gray-700 font-bold mt-8 mb-1"
