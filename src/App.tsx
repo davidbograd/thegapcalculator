@@ -1,7 +1,7 @@
 import { useState } from "react";
 import SiteLogo from "./Components/SiteLogo.tsx";
 import { LeaveCostCalc } from "./Components/calculation.ts";
-import Field from "./Components/Field.ts";
+import Field, { justTesting } from "./Components/Field";
 
 function App() {
   const [peopleData, setPeopleData] = useState([
@@ -30,6 +30,7 @@ function App() {
 
   const handleButtonClick = () => {
     console.log("Clickhandler ran");
+    console.log(justTesting);
     if (salary == "" || totalLeave == "" || companyPaidLeave == "") {
       alert("Please fill in all details");
       return;
@@ -67,10 +68,18 @@ function App() {
         </a>
       </nav>
       <Field
+        id="0"
         carer="primary"
         dataPoint="salary"
         label="Annual salary"
         placeholder="Enter annual salary"
+      />
+      <Field
+        id="1"
+        carer="primary"
+        dataPoint="total leave"
+        label="Total leave in weeks"
+        placeholder="Eg 40"
       />
 
       {/* Hero area */}
