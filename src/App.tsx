@@ -1,16 +1,18 @@
 import { useState } from "react";
 import SiteLogo from "./Components/SiteLogo.tsx";
 import { LeaveCostCalc } from "./Components/calculation.ts";
+import Field from "./Components/Field.ts";
 
 function App() {
-  // const [peopleData, setPeopleData] = useState([
-  //   { salary: "", totalLeave: "", companyPaidLeave: "" },
-  //   { salary: "", totalLeave: "", companyPaidLeave: "" },
-  // ]);
+  const [peopleData, setPeopleData] = useState([
+    { salary: "", totalLeave: "", companyPaidLeave: "" },
+  ]);
 
+  // These will go into field.tsx
   const [salary, setSalary] = useState("");
   const [totalLeave, setTotalLeave] = useState("");
   const [companyPaidLeave, setCompanyPaidLeave] = useState("");
+
   const [result, setResult] = useState(() => LeaveCostCalc(0, 0, 0, 0));
   const [resultShowing, setResultShowing] = useState(false);
 
@@ -64,6 +66,12 @@ function App() {
           <SiteLogo />
         </a>
       </nav>
+      <Field
+        carer="primary"
+        dataPoint="salary"
+        label="Annual salary"
+        placeholder="Enter annual salary"
+      />
 
       {/* Hero area */}
       <div className="my-10 md:my-20">
@@ -75,29 +83,28 @@ function App() {
           Understand it. Get ideas how to deal with it in.
         </p>
 
-        {/* two sections */}
-        <div className="max-w-4xl m-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-16">
-          {/* calculator */}
-          <div className="max-w-sm bg-zinc-100 p-6 rounded-md">
-            <form className="" name="form">
+        <div>
+          {/* primary input */}
+          <div className="p-6 rounded-md border">
+            <p className="text-xs text-slate-500 font-bold mb-4">
+              PRIMARY CARER
+            </p>
+            <form name="form" className="flex gap-4">
               {/* Primary */}
-              <div>
-                <p className="text-xs text-slate-500 font-bold mb-4">
-                  PRIMARY CARER
-                </p>
-                {/* input */}
+              {/* input */}
+              <div className="border-r">
                 <label
                   htmlFor="salary"
-                  className="block text-gray-700 text-base font-bold mb-1"
+                  className="text-gray-700 text-base font-bold mb-1"
                 >
                   Annual salary
                 </label>
                 <div className="relative">
-                  <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-700">
+                  <span className="absolute inset-y-0 left-0 flex items-center text-gray-700">
                     $
                   </span>
                   <input
-                    className="border rounded w-full py-2 pl-8 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline pl-4"
                     id="salary"
                     type="text"
                     required
@@ -107,17 +114,19 @@ function App() {
                     name="salary"
                   />
                 </div>
+              </div>
 
-                {/* input */}
+              {/* input */}
+              <div className="border-r">
                 <label
                   htmlFor="total-leave"
-                  className="block text-gray-700 text-base font-bold mt-8 mb-1"
+                  className="block text-gray-700 text-base font-bold mb-1"
                 >
                   Total leave (in weeks)
                 </label>
                 <div className="relative">
                   <input
-                    className="border rounded w-full py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="total-leave"
                     type="text"
                     required
@@ -132,16 +141,18 @@ function App() {
                     weeks
                   </span>
                 </div>
+              </div>
 
+              <div className="border-r">
                 <label
                   htmlFor="company-paid-leave"
-                  className="block text-gray-700 font-bold mt-8 mb-1"
+                  className="block text-gray-700 font-bold mb-1"
                 >
                   Company paid leave
                 </label>
                 <div className="relative">
                   <input
-                    className="border rounded w-full py-2 pl-3 pr-8 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="company-paid-leave"
                     type="text"
                     required
@@ -158,12 +169,105 @@ function App() {
                 </div>
               </div>
             </form>
-            <button
-              onClick={() => handleButtonClick()}
-              className="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-normal text-white"
-            >
-              Calculate true cost
-            </button>
+          </div>
+
+          {/* primary input */}
+          <div className="p-6 mt-4 rounded-md border">
+            <p className="text-xs text-slate-500 font-bold mb-4">
+              SECONDARY CARER
+            </p>
+            <form name="form" className="flex gap-4">
+              {/* Primary */}
+              {/* input */}
+              <div className="border-r">
+                <label
+                  htmlFor="salary"
+                  className="text-gray-700 text-base font-bold mb-1"
+                >
+                  Annual salary
+                </label>
+                <div className="relative">
+                  <span className="absolute inset-y-0 left-0 flex items-center text-gray-700">
+                    $
+                  </span>
+                  <input
+                    className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline pl-4"
+                    id="salary"
+                    type="text"
+                    required
+                    value={salary}
+                    onChange={(e) => handleChange(e.target.value, setSalary)}
+                    placeholder="Enter annual salary"
+                    name="salary"
+                  />
+                </div>
+              </div>
+
+              {/* input */}
+              <div className="border-r">
+                <label
+                  htmlFor="total-leave"
+                  className="block text-gray-700 text-base font-bold mb-1"
+                >
+                  Total leave (in weeks)
+                </label>
+                <div className="relative">
+                  <input
+                    className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="total-leave"
+                    type="text"
+                    required
+                    value={totalLeave}
+                    onChange={(e) =>
+                      handleChange(e.target.value, setTotalLeave)
+                    }
+                    placeholder="Eg '4'"
+                    name="totalLeave"
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
+                    weeks
+                  </span>
+                </div>
+              </div>
+
+              <div className="border-r">
+                <label
+                  htmlFor="company-paid-leave"
+                  className="block text-gray-700 font-bold mb-1"
+                >
+                  Company paid leave
+                </label>
+                <div className="relative">
+                  <input
+                    className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="company-paid-leave"
+                    type="text"
+                    required
+                    value={companyPaidLeave}
+                    onChange={(e) =>
+                      handleChange(e.target.value, setCompanyPaidLeave)
+                    }
+                    placeholder="Eg '2'"
+                    name="companyLeave"
+                  />
+                  <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-700">
+                    weeks
+                  </span>
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <button
+            onClick={() => handleButtonClick()}
+            className="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-normal text-white"
+          >
+            Calculate true cost
+          </button>
+
+          {/* two sections */}
+          <div className="max-w-4xl m-auto grid grid-cols-1 md:grid-cols-2 gap-4 mt-16">
+            {/* calculator */}
           </div>
 
           {/* Result */}
