@@ -43,7 +43,7 @@ export function LeaveCostCalc(
     const total = income + superannuation;
     return {
       income: income,
-      superannuation: superannuation,
+      super: superannuation,
       total: total,
     };
   }
@@ -65,13 +65,13 @@ export function LeaveCostCalc(
 
   let lostTotals = {
     income: lostPayCalc.income,
-    super: lostPayCalc.superannuation,
+    super: lostPayCalc.super,
     total: lostPayCalc.total,
   };
 
   let incomeTotals = {
     income: govPaidCalc.income + companyPaidCalc.income,
-    super: govPaidCalc.superannuation + companyPaidCalc.superannuation,
+    super: govPaidCalc.super + companyPaidCalc.super,
     total: govPaidCalc.total + companyPaidCalc.total,
   };
 
@@ -99,11 +99,7 @@ export function LeaveCostCalc(
 
   const LeaveCostResult = {
     summary: formatObjectValues(summaryTotals),
-    leaveDetail: LeaveDetails,
-    incomeGov: formatObjectValues(govPaidCalc),
-    incomeCompany: formatObjectValues(companyPaidCalc),
-    lostTotals: formatObjectValues(lostTotals),
+    unpaidLeave: LeaveDetails.unpaidLeave,
   };
-  console.log(LeaveCostResult);
   return LeaveCostResult;
 }

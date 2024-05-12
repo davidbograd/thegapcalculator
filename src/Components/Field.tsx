@@ -1,45 +1,55 @@
-import { useState } from "react";
-
-export const anotherTest = "Hello from Field.tsx";
-export let justTesting = "";
+import React from "react";
 
 interface Props {
-  id: string;
-  carer: string;
-  dataPoint: string;
   label: string;
   placeholder: string;
+  value: string;
+  dollarOrWeek: string;
+  onChange: (newValue: string) => void;
 }
 
-const Field = ({ id, carer, dataPoint, label, placeholder }: Props) => {
-  const [fieldValue, setFieldValue] = useState("");
-  // Restrict input to numbers
-  const handleChange = (
-    inputValue: string,
-    setValue: React.Dispatch<React.SetStateAction<string>>
-  ) => {
-    const inputRegex = /^[0-9]*$/; // Regular expression to match only numbers
-
-    if (inputRegex.test(inputValue) || inputValue === "") {
-      setValue(inputValue);
-      justTesting = inputValue;
-      console.log(justTesting);
-    }
+const Field = ({
+  label,
+  placeholder,
+  value,
+  dollarOrWeek,
+  onChange,
+}: Props) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onChange(event.target.value);
   };
+
+  const inputClassName =
+    dollarOrWeek == "dollar"
+      ? "pl-4 w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      : "w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline";
+
+  const spanDollarOrWeek =
+    dollarOrWeek == "dollar" ? (
+      <span className="absolute inset-y-0 left-0 flex items-center pr-3 text-gray-700">
+        $
+      </span>
+    ) : (
+      <span className="absolute inset-y-0 right-16 flex items-center pr-3 text-gray-700">
+        weeks
+      </span>
+    );
 
   return (
     <div>
       <label className="text-gray-700 text-base font-bold mb-1">{label}</label>
-      <input
-        className="w-full text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id={id}
-        type="text"
-        required
-        value={fieldValue}
-        onChange={(e) => handleChange(e.target.value, setFieldValue)}
-        placeholder={placeholder}
-        name={dataPoint}
-      />
+      <div className="relative">
+        <input
+          className={inputClassName}
+          type="text"
+          required
+          value={value}
+          placeholder={placeholder}
+          onChange={handleChange}
+        />
+        {spanDollarOrWeek}
+        {}
+      </div>
     </div>
   );
 };
