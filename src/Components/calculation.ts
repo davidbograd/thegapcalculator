@@ -1,5 +1,3 @@
-import { numberFormatted } from "./numberFormatter";
-
 interface LeaveData {
   [key: string]: any;
 }
