@@ -69,7 +69,7 @@ const Result: React.FC<Props> = ({
               {personData[0].totalLeave} weeks of parental leave.{" "}
               {personData[0].companyPaidLeave} weeks paid by your employer.{" "}
               {personData[0].governmentPaidLeave} weeks paid by the government
-              and {secondary.unpaidLeave} weeks unpaid.
+              and {primary.unpaidLeave} weeks unpaid.
             </p>
           ) : null}
 

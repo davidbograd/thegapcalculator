@@ -100,13 +100,8 @@ export function LeaveCostCalc(
       super: incomeTotals.super - lostTotals.super,
       unpaidLeave: leaveDetailsIndividual[index].unpaidLeave,
     };
-
-    console.log(govPaidCalc);
-    console.log(companyPaidCalc);
-    console.log(lostPayCalc);
-    console.log(lostTotals);
-    console.log(incomeTotals);
-    console.log(individualData);
+    console.log("I am " + index);
+    console.log(individualData.unpaidLeave);
 
     return individualData;
   }
