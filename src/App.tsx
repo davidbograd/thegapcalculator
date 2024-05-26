@@ -23,7 +23,42 @@ function App() {
     },
   ]);
 
-  const handleValueChange = (
+  // converts to strings to numbers, when possible.
+  function convertToNumberIfPossible(value: any): any {
+    // Check if the value is a string and if it represents a number
+    if (typeof value === "string" && !isNaN(Number(value))) {
+      return Number(value); // Convert the string to a number
+    }
+    return value; // Return the value as is if it's not a number string
+  }
+
+  function formatObjectValues(obj: { [key: string]: any }): {
+    [key: string]: any;
+  } {
+    // Create a new object to store the updated values
+    let newObj: { [key: string]: any } = {};
+    // Iterate over each property in the object
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        // Convert the property value to number if possible
+        newObj[key] = convertToNumberIfPossible(obj[key]);
+      }
+    }
+    // Return the new object with updated values
+    return newObj;
+  }
+
+  // Converting the strings to numbers to pass into calculation.ts
+  let formattedPersonData = personData.map(formatObjectValues);
+
+  const [hasPartner, setHasPartner] = useState(false);
+  const [resultShowing, setResultShowing] = useState(false);
+
+  const handlePartnerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setHasPartner(event.target.value === "yes");
+  };
+
+  const handlePersonDataChange = (
     newValue: string,
     index: number,
     field:
@@ -38,10 +73,9 @@ function App() {
       return updatedPersonData;
     });
   };
-
-  const [result, setResult] = useState(() => LeaveCostCalc(0, 0, 0, 0));
-  const [resultTwo, setResultTwo] = useState(() => LeaveCostCalc(0, 0, 0, 0));
-  const [resultShowing, setResultShowing] = useState(false);
+  const [resultData, setResultData] = useState(
+    LeaveCostCalc(formattedPersonData, hasPartner)
+  );
 
   // Restrict input to numbers
   // const handleChange = (
@@ -57,6 +91,7 @@ function App() {
 
   const handleButtonClick = () => {
     console.log("Clickhandler ran");
+    // Check if primary person input is empty
     if (
       personData[0].annualSalary == "" ||
       personData[0].totalLeave == "" ||
@@ -65,55 +100,23 @@ function App() {
       alert("Please fill in all details");
       return;
     } else {
-      const salaryValue = parseFloat(personData[0].annualSalary);
-      const totalLeaveValue = parseFloat(personData[0].totalLeave);
-      const companyPaidLeaveValue = parseFloat(personData[0].companyPaidLeave);
-      const governmentPaidLeave = parseFloat(personData[0].governmentPaidLeave);
-      setResult(
-        LeaveCostCalc(
-          salaryValue,
-          totalLeaveValue,
-          companyPaidLeaveValue,
-          governmentPaidLeave
-        )
-      );
-      const salaryValueTwo = parseFloat(personData[1].annualSalary);
-      const totalLeaveValueTwo = parseFloat(personData[1].totalLeave);
-      const companyPaidLeaveValueTwo = parseFloat(
-        personData[1].companyPaidLeave
-      );
-      const governmentPaidLeaveTwo = parseFloat(
-        personData[1].governmentPaidLeave
-      );
-      setResultTwo(
-        LeaveCostCalc(
-          salaryValueTwo,
-          totalLeaveValueTwo,
-          companyPaidLeaveValueTwo,
-          governmentPaidLeaveTwo
-        )
+      // New calc
+      const updatedResultData = LeaveCostCalc(
+        // parseFloat(personData[0].annualSalary),
+        formattedPersonData,
+        hasPartner
       );
 
-      function showResult() {
-        setResultShowing(true);
-
-        const element = document.getElementById("calculatedResult"); // Get the DIV element
-        element?.classList.remove("hidden"); // Remove hide class
-
-        const placeholder = document.getElementById("resultPlaceholder"); // Get the DIV element
-        placeholder?.classList.add("hidden"); // Add hide class
-
-        const calculationDetails =
-          document.getElementById("calculationDetails"); // Get the DIV element
-        calculationDetails?.classList.remove("opacity-50"); // Remove opacity class
-      }
-      showResult();
+      // Set the new calc to resultData
+      setResultData(updatedResultData);
+      // Set resultShowing to true
+      setResultShowing(true);
     }
   };
 
   return (
     //
-    <div className="mx-auto max-w-5xl p-4 lg:pt-8">
+    <div className="mx-auto max-w-5xl p-4 lg:pt-6">
       <nav className="flex justify-center">
         <a href="#">
           <SiteLogo />
@@ -121,7 +124,7 @@ function App() {
       </nav>
 
       {/* Hero area */}
-      <div className="my-10 md:my-20">
+      <div className="my-10 md:my-16">
         <h1 className="text-slate-800 text-3xl md:text-4xl  font-bold mb-2 text-center">
           Uncover the <span className="bg-purple-200 px-0.5">true cost</span> of
           your parental leave
@@ -129,34 +132,40 @@ function App() {
         <p className="text-slate-600 text-lg md:text-xl font-medium text-center mt-4">
           Understand it. Get ideas how to deal with it in.
         </p>
-
-        {personData.map((person, index) => (
+        <Person
+          key={0}
+          person={personData[0]}
+          index={0}
+          handlePersonDataChange={handlePersonDataChange}
+          handlePartnerChange={handlePartnerChange}
+        />
+        {/* If hasPartner is set to yes, render input for secondary */}
+        {hasPartner && (
           <Person
-            key={index}
-            person={person}
-            index={index}
-            handleValueChange={handleValueChange}
+            key={1}
+            person={personData[1]}
+            index={1}
+            handlePersonDataChange={handlePersonDataChange}
+            handlePartnerChange={handlePartnerChange}
           />
-        ))}
-
+        )}
         <div>
           <button
             onClick={() => handleButtonClick()}
-            className="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-6 md:px-8 py-2 mt-2 mr-2 text-m md:text-xl rounded-full font-normal text-white"
+            className="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-6 md:px-8 py-2 mr-2 text-m md:text-xl rounded-full font-normal text-white"
           >
             Calculate true cost
           </button>
 
           <Result
-            summary={result.summary}
-            unpaidLeave={result.unpaidLeave}
-            personData={personData[0]}
-          />
+            outcome={resultData.combined}
+            primary={resultData.primary}
+            secondary={resultData.secondary}
+            personData={personData}
+            hasPartner={hasPartner}
+            resultShowing={resultShowing}
 
-          <Result
-            summary={resultTwo.summary}
-            unpaidLeave={resultTwo.unpaidLeave}
-            personData={personData[1]}
+            // handlePartnerChange={handlePartnerChange}
           />
         </div>
       </div>

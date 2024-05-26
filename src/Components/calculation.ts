@@ -1,37 +1,40 @@
+import { numberFormatted } from "./numberFormatter";
+
+interface LeaveData {
+  [key: string]: any;
+}
+
 export function LeaveCostCalc(
-  salary: number,
-  totalLeaveWeeks: number,
-  companyPaidLeaveWeeks: number,
-  govPaidLeaveWeeks: number
+  // leaveDataArray is testing to pass an object with all details for both people
+  leaveDataArray: LeaveData[],
+  hasPartner: boolean
 ) {
-  // Format numbers
-  function numberFormatted(x: number) {
-    // Round numbers to 2 decimal points
-    function numberRounded(x: number) {
-      return x.toFixed(2);
-    }
-    // Add , every thousands
-    function numberWithCommas(x: any) {
-      return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    }
+  const leaveDetailsIndividual = [
+    {
+      salary: leaveDataArray[0].annualSalary,
+      totalLeave: leaveDataArray[0].totalLeave,
+      companyPaidLeave: leaveDataArray[0].companyPaidLeave,
+      govPaidLeave: leaveDataArray[0].governmentPaidLeave,
+      unpaidLeave:
+        leaveDataArray[0].totalLeave -
+        leaveDataArray[0].companyPaidLeave -
+        leaveDataArray[0].governmentPaidLeave,
+    },
+    {
+      salary: leaveDataArray[1].annualSalary,
+      totalLeave: leaveDataArray[1].totalLeave,
+      companyPaidLeave: leaveDataArray[1].companyPaidLeave,
+      govPaidLeave: leaveDataArray[1].governmentPaidLeave,
+      unpaidLeave:
+        leaveDataArray[1].totalLeave -
+        leaveDataArray[1].companyPaidLeave -
+        leaveDataArray[1].governmentPaidLeave,
+    },
+  ];
 
-    const roundedNumber = numberRounded(x);
-    const numberWithCommasResult = numberWithCommas(roundedNumber);
-    return numberWithCommasResult;
-  }
-
-  const LeaveDetails = {
-    salary: salary,
-    totalLeave: totalLeaveWeeks,
-    companyPaidLeave: companyPaidLeaveWeeks,
-    govPaidLeave: govPaidLeaveWeeks,
-    unpaidLeave: totalLeaveWeeks - companyPaidLeaveWeeks - govPaidLeaveWeeks,
+  const leaveDetailsCombined = {
+    salary: leaveDetailsIndividual[0].salary + leaveDetailsIndividual[1].salary,
   };
-
-  const superannuationRate = 0.11;
-  // If salary is over $168865, set gov paid to 0.
-  const govWeekRate = LeaveDetails.salary > 168865 ? 0 : 882.75;
-  const companyPaidWeekRate = LeaveDetails.salary / 52;
 
   function IncomeAndLossCalculator(
     weeks: number,
@@ -47,59 +50,79 @@ export function LeaveCostCalc(
       total: total,
     };
   }
-  let govPaidCalc = IncomeAndLossCalculator(
-    LeaveDetails.govPaidLeave,
-    govWeekRate,
-    0
-  );
-  let companyPaidCalc = IncomeAndLossCalculator(
-    LeaveDetails.companyPaidLeave,
-    companyPaidWeekRate,
-    superannuationRate
-  );
-  let lostPayCalc = IncomeAndLossCalculator(
-    LeaveDetails.totalLeave,
-    companyPaidWeekRate,
-    superannuationRate
-  );
 
-  let lostTotals = {
-    income: lostPayCalc.income,
-    super: lostPayCalc.super,
-    total: lostPayCalc.total,
-  };
+  function calculateForIndividual(index: number) {
+    // Set company paid rate per individal
+    const companyPaidWeekRate = leaveDetailsIndividual[index].salary / 52;
 
-  let incomeTotals = {
-    income: govPaidCalc.income + companyPaidCalc.income,
-    super: govPaidCalc.super + companyPaidCalc.super,
-    total: govPaidCalc.total + companyPaidCalc.total,
-  };
+    // Set fixed super rate
+    const superannuationRate = 0.11;
+    // Set gov rate depending on hasPartner, and different rates if true.
+    // If salary for single is over $168865, set gov paid to 0.
+    // If salary for couple is over $350000, set gov paid to 0.
+    const govWeekRate = hasPartner
+      ? leaveDetailsCombined.salary > 350000
+        ? 0
+        : 882.75
+      : leaveDetailsIndividual[0].salary > 168865
+      ? 0
+      : 882.75;
 
-  let summaryTotals = {
-    total: incomeTotals.total - lostTotals.total,
-    lostIncome: lostTotals.income,
-    lostSuper: lostTotals.super,
-    gainedIncome: incomeTotals.income,
-    gainedSuper: incomeTotals.super,
-  };
+    console.log("calc for individual ran");
 
-  function formatObjectValues(obj: { [key: string]: any }): {
-    [key: string]: any;
-  } {
-    // Create a new object to store the updated values
-    let newObj: { [key: string]: any } = {};
-    // Iterate over each property in the object
-    for (let key in obj) {
-      // Check if the property value is a number
-      newObj[key] = numberFormatted(obj[key]);
-    }
-    // Return the new object with updated values
-    return newObj;
+    let govPaidCalc = IncomeAndLossCalculator(
+      leaveDetailsIndividual[index].govPaidLeave,
+      govWeekRate,
+      0
+    );
+    let companyPaidCalc = IncomeAndLossCalculator(
+      leaveDetailsIndividual[index].companyPaidLeave,
+      companyPaidWeekRate,
+      superannuationRate
+    );
+    let lostPayCalc = IncomeAndLossCalculator(
+      leaveDetailsIndividual[index].totalLeave,
+      companyPaidWeekRate,
+      superannuationRate
+    );
+    let lostTotals = {
+      income: lostPayCalc.income,
+      super: lostPayCalc.super,
+      total: lostPayCalc.total,
+    };
+    let incomeTotals = {
+      income: govPaidCalc.income + companyPaidCalc.income,
+      super: govPaidCalc.super + companyPaidCalc.super,
+      total: govPaidCalc.total + companyPaidCalc.total,
+    };
+
+    const individualData = {
+      outcome: incomeTotals.total - lostTotals.total,
+      income: incomeTotals.income - lostTotals.income,
+      super: incomeTotals.super - lostTotals.super,
+      unpaidLeave: leaveDetailsIndividual[index].unpaidLeave,
+    };
+
+    console.log(govPaidCalc);
+    console.log(companyPaidCalc);
+    console.log(lostPayCalc);
+    console.log(lostTotals);
+    console.log(incomeTotals);
+    console.log(individualData);
+
+    return individualData;
   }
 
+  const calculatedPrimary = calculateForIndividual(0);
+  const calculatedSecondary = calculateForIndividual(1);
+  const calculatedCombined = hasPartner
+    ? calculatedPrimary.outcome + calculatedSecondary.outcome
+    : calculatedPrimary.outcome;
+
   const LeaveCostResult = {
-    summary: formatObjectValues(summaryTotals),
-    unpaidLeave: LeaveDetails.unpaidLeave,
+    combined: calculatedCombined,
+    primary: calculatedPrimary,
+    secondary: calculatedSecondary,
   };
   return LeaveCostResult;
 }
