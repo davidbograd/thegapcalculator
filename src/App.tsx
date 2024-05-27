@@ -9,16 +9,16 @@ function App() {
   const [personData, setPersonData] = useState([
     {
       carer: "Primary",
-      annualSalary: "100000",
-      totalLeave: "40",
-      companyPaidLeave: "8",
+      annualSalary: "",
+      totalLeave: "",
+      companyPaidLeave: "",
       governmentPaidLeave: "18",
     },
     {
       carer: "Secondary",
-      annualSalary: "50000",
-      totalLeave: "4",
-      companyPaidLeave: "2",
+      annualSalary: "",
+      totalLeave: "",
+      companyPaidLeave: "",
       governmentPaidLeave: "2",
     },
   ]);
