@@ -130,7 +130,7 @@ function App() {
           your parental leave
         </h1>
         <p className="text-stone-600 text-lg md:text-xl font-medium text-center mt-4">
-          Understand it. Get ideas how to deal with it in.
+          Understand it. Get ideas how to deal with it.
         </p>
 
         <Person

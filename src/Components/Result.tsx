@@ -87,6 +87,27 @@ const Result: React.FC<Props> = ({
           </div>
 
           <ResultSingleLine
+            label="Total lost"
+            lineNumber={-primary.lost.total}
+            resultShowing={resultShowing}
+            style={2}
+          />
+
+          <ResultSingleLine
+            label="Income lost"
+            lineNumber={-primary.lost.income}
+            resultShowing={resultShowing}
+            style={1}
+          />
+
+          <ResultSingleLine
+            label="Super lost"
+            lineNumber={-primary.lost.super}
+            resultShowing={resultShowing}
+            style={1}
+          />
+
+          <ResultSingleLine
             label="Total parental leave pay"
             lineNumber={primary.pay.total}
             resultShowing={resultShowing}
@@ -109,27 +130,6 @@ const Result: React.FC<Props> = ({
           <ResultSingleLine
             label="Super (employer)"
             lineNumber={primary.pay.super}
-            resultShowing={resultShowing}
-            style={1}
-          />
-
-          <ResultSingleLine
-            label="Total lost"
-            lineNumber={-primary.lost.total}
-            resultShowing={resultShowing}
-            style={2}
-          />
-
-          <ResultSingleLine
-            label="Income lost"
-            lineNumber={-primary.lost.income}
-            resultShowing={resultShowing}
-            style={1}
-          />
-
-          <ResultSingleLine
-            label="Super lost"
-            lineNumber={-primary.lost.super}
             resultShowing={resultShowing}
             style={1}
           />
@@ -159,6 +159,27 @@ const Result: React.FC<Props> = ({
             </div>
 
             <ResultSingleLine
+              label="Total lost"
+              lineNumber={-secondary.lost.total}
+              resultShowing={resultShowing}
+              style={2}
+            />
+
+            <ResultSingleLine
+              label="Income lost"
+              lineNumber={-secondary.lost.income}
+              resultShowing={resultShowing}
+              style={1}
+            />
+
+            <ResultSingleLine
+              label="Super lost"
+              lineNumber={-secondary.lost.super}
+              resultShowing={resultShowing}
+              style={1}
+            />
+
+            <ResultSingleLine
               label="Total parental leave pay"
               lineNumber={secondary.pay.total}
               resultShowing={resultShowing}
@@ -181,27 +202,6 @@ const Result: React.FC<Props> = ({
             <ResultSingleLine
               label="Super (employer)"
               lineNumber={secondary.pay.super}
-              resultShowing={resultShowing}
-              style={1}
-            />
-
-            <ResultSingleLine
-              label="Total lost"
-              lineNumber={-secondary.lost.total}
-              resultShowing={resultShowing}
-              style={2}
-            />
-
-            <ResultSingleLine
-              label="Income lost"
-              lineNumber={-secondary.lost.income}
-              resultShowing={resultShowing}
-              style={1}
-            />
-
-            <ResultSingleLine
-              label="Super lost"
-              lineNumber={-secondary.lost.super}
               resultShowing={resultShowing}
               style={1}
             />
