@@ -9,16 +9,16 @@ function App() {
   const [personData, setPersonData] = useState([
     {
       carer: "Primary",
-      annualSalary: "",
-      totalLeave: "",
-      companyPaidLeave: "",
+      annualSalary: "100000",
+      totalLeave: "52",
+      companyPaidLeave: "12",
       governmentPaidLeave: "18",
     },
     {
       carer: "Secondary",
-      annualSalary: "",
-      totalLeave: "",
-      companyPaidLeave: "",
+      annualSalary: "100000",
+      totalLeave: "4",
+      companyPaidLeave: "2",
       governmentPaidLeave: "2",
     },
   ]);
@@ -125,11 +125,11 @@ function App() {
 
       {/* Hero area */}
       <div className="my-10 md:my-16">
-        <h1 className="text-slate-800 text-3xl md:text-4xl  font-bold mb-2 text-center">
+        <h1 className="text-stone-800 text-3xl md:text-4xl  font-bold mb-2 text-center">
           Uncover the <span className="bg-purple-200 px-0.5">true cost</span> of
           your parental leave
         </h1>
-        <p className="text-slate-600 text-lg md:text-xl font-medium text-center mt-4">
+        <p className="text-stone-600 text-lg md:text-xl font-medium text-center mt-4">
           Understand it. Get ideas how to deal with it in.
         </p>
         <Person

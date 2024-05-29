@@ -66,8 +66,6 @@ export function LeaveCostCalc(
       ? 0
       : 882.75;
 
-    console.log("calc for individual ran");
-
     let govPaidCalc = IncomeAndLossCalculator(
       leaveDetailsIndividual[index].govPaidLeave,
       govWeekRate,
@@ -97,11 +95,21 @@ export function LeaveCostCalc(
     const individualData = {
       outcome: incomeTotals.total - lostTotals.total,
       income: incomeTotals.income - lostTotals.income,
+      lost: {
+        income: lostTotals.income,
+        super: lostTotals.super,
+        total: lostTotals.income + lostTotals.super,
+      },
+      pay: {
+        employer: companyPaidCalc.income,
+        super: companyPaidCalc.super,
+        government: govPaidCalc.income,
+        total:
+          companyPaidCalc.income + companyPaidCalc.super + govPaidCalc.income,
+      },
       super: incomeTotals.super - lostTotals.super,
       unpaidLeave: leaveDetailsIndividual[index].unpaidLeave,
     };
-    console.log("I am " + index);
-    console.log(individualData.unpaidLeave);
 
     return individualData;
   }
