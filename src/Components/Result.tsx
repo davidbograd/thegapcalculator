@@ -40,7 +40,7 @@ const Result: React.FC<Props> = ({
   outcome,
   primary,
   secondary,
-  personData,
+  // personData,
   hasPartner,
   resultShowing,
 }) => {
