@@ -124,14 +124,14 @@ const Result: React.FC<Props> = ({
             style={1}
           />
 
-          {resultShowing ? (
+          {/* {resultShowing ? (
             <p className="text-stone-800 px-0.5 mt-4">
               {personData[0].totalLeave} weeks of parental leave.{" "}
               {personData[0].companyPaidLeave} weeks paid by your employer.{" "}
               {personData[0].governmentPaidLeave} weeks paid by the government
               and {primary.unpaidLeave} weeks unpaid.
             </p>
-          ) : null}
+          ) : null} */}
         </div>
 
         {hasPartner ? (
@@ -196,14 +196,14 @@ const Result: React.FC<Props> = ({
               style={1}
             />
 
-            {resultShowing ? (
+            {/* {resultShowing ? (
               <p className="text-stone-800 px-0.5 mt-4">
                 {personData[1].totalLeave} weeks of parental leave.{" "}
                 {personData[1].companyPaidLeave} weeks paid by your employer.{" "}
                 {personData[1].governmentPaidLeave} weeks paid by the government
                 and {secondary.unpaidLeave} weeks unpaid.
               </p>
-            ) : null}
+            ) : null} */}
           </div>
         ) : null}
       </div>
