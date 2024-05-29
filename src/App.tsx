@@ -132,6 +132,7 @@ function App() {
         <p className="text-stone-600 text-lg md:text-xl font-medium text-center mt-4">
           Understand it. Get ideas how to deal with it in.
         </p>
+
         <Person
           key={0}
           person={personData[0]}
@@ -149,14 +150,16 @@ function App() {
             handlePartnerChange={handlePartnerChange}
           />
         )}
-        <div>
+        <div className="flex justify-center">
           <button
             onClick={() => handleButtonClick()}
-            className="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-6 md:px-8 py-2 mr-2 text-m md:text-xl rounded-full font-normal text-white"
+            className="bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-indigo-700 px-6 md:px-8 py-3 text-lg md:text-xl rounded-lg font-normal text-white w-full"
           >
             Calculate true cost
           </button>
+        </div>
 
+        <div>
           <Result
             outcome={resultData.combined}
             primary={resultData.primary}

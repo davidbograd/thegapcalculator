@@ -49,7 +49,7 @@ const Person = ({
       <p className="text-xs text-slate-500 font-bold mb-4">
         {index == 0 ? "PRIMARY" : "SECONDARY"} CARER
       </p>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4">
         <Field
           label="Annual salary"
           placeholder={personalisedPlaceholder.salary}
@@ -85,7 +85,7 @@ const Person = ({
             <label className="text-gray-700 text-base font-bold mb-1">
               Do you have a partner?
             </label>
-            <div className="flex space-x-1">
+            <div className="flex space-x-1 mt-0.5">
               <label>
                 <input
                   type="radio"
@@ -94,7 +94,7 @@ const Person = ({
                   className="hidden peer"
                   onChange={handlePartnerChange}
                 />
-                <div className="px-4 py-1 bg-gray-200 text-gray-700 rounded-full cursor-pointer peer-checked:bg-indigo-500 peer-checked:text-white">
+                <div className="px-4 py-0.5 bg-gray-200 text-gray-700 rounded-full cursor-pointer peer-checked:bg-indigo-500 peer-checked:text-white">
                   Yes
                 </div>
               </label>
@@ -106,7 +106,7 @@ const Person = ({
                   className="hidden peer"
                   onChange={handlePartnerChange}
                 />
-                <div className="px-4 py-1 bg-gray-200 text-gray-700 rounded-full cursor-pointer peer-checked:bg-indigo-500 peer-checked:text-white">
+                <div className="px-4 py-0.5 bg-gray-200 text-gray-700 rounded-full cursor-pointer peer-checked:bg-indigo-500 peer-checked:text-white">
                   No
                 </div>
               </label>

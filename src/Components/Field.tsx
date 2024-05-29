@@ -36,7 +36,7 @@ const Field = ({
     );
 
   return (
-    <div>
+    <div className="relative">
       <label className="text-gray-700 text-base font-bold mb-1">{label}</label>
       <div className="relative">
         <input

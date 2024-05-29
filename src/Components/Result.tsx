@@ -46,23 +46,35 @@ const Result: React.FC<Props> = ({
 }) => {
   return (
     <div className="mt-16">
-      {resultShowing ? (
-        <div id="calculatedResult">
-          <div className="flex flex-col items-center">
-            <p className="text-stone-800 text-l md:text-xl px-0.5 font-bold text-center center">
+      <div id="calculatedResult">
+        <div className="flex flex-col items-center">
+          {resultShowing ? (
+            <p className="text-stone-800 text-lg md:text-xl px-0.5 font-bold text-center">
               {hasPartner
                 ? "The cost of your combined parental leave is"
                 : "The cost of your parental leave is"}
             </p>
-            <p className="text-stone-800 text-3xl md:text-5xl font-bold mb-2 text-center bg-purple-200 inline p-2 my-2">
+          ) : (
+            <p className="text-stone-800 text-lg md:text-xl px-0.5 font-bold text-center">
+              Add details to see your parental leave cost
+            </p>
+          )}
+          {resultShowing ? (
+            <p className="text-stone-800 text-4xl md:text-5xl font-bold mb-2 text-center bg-purple-200 inline p-2 my-2">
               ${numberFormatted(outcome)}
             </p>
-            <p className="text-stone-800 text-l md:text-xl px-0.5 font-bold text-center">
+          ) : (
+            <p className="text-stone-800 text-4xl md:text-5xl font-bold mb-2 text-center bg-purple-200 inline p-2 my-2">
+              $?
+            </p>
+          )}
+          {resultShowing ? (
+            <p className="text-stone-800 text-lg md:text-xl px-0.5 font-bold text-center">
               in lost income.
             </p>
-          </div>
+          ) : null}
         </div>
-      ) : null}
+      </div>
 
       <div className="flex flex-wrap flex-col md:flex-row justify-between gap-4 mt-8">
         <div
