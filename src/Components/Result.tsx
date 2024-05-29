@@ -35,8 +35,6 @@ interface Props {
 }
 
 const Result: React.FC<Props> = ({
-  // summary,
-  // unpaidLeave,
   outcome,
   primary,
   secondary,
