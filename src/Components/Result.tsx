@@ -42,8 +42,10 @@ const Result: React.FC<Props> = ({
   hasPartner,
   resultShowing,
 }) => {
+  let resultsOpacityClass = resultShowing ? "mt-16" : "mt-16 opacity-50";
+
   return (
-    <div className="mt-16">
+    <div className={resultsOpacityClass}>
       <div id="calculatedResult">
         <div className="flex flex-col items-center">
           {resultShowing ? (
