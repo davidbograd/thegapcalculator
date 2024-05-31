@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 
 interface Props {
   label: string;
   placeholder: string;
   value: string;
+  description: string;
   dollarOrWeek: string;
   onChange: (newValue: string) => void;
 }
@@ -12,11 +13,22 @@ const Field = ({
   label,
   placeholder,
   value,
+  description,
   dollarOrWeek,
   onChange,
 }: Props) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
+  };
+
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
   };
 
   const inputClassName =
@@ -30,13 +42,13 @@ const Field = ({
         $
       </span>
     ) : (
-      <span className="absolute inset-y-0 right-16 flex items-center pr-3 text-gray-700">
+      <span className="absolute inset-y-0 right-28 flex items-center pr-3 text-gray-700">
         weeks
       </span>
     );
 
   return (
-    <div className="relative">
+    <div className="relative w-56">
       <label className="text-gray-700 text-base font-bold mb-1">{label}</label>
       <div className="relative">
         <input
@@ -46,10 +58,12 @@ const Field = ({
           value={value}
           placeholder={placeholder}
           onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         />
         {spanDollarOrWeek}
-        {}
       </div>
+      {isFocused && <p className="mt-2 text-gray-600 text-sm">{description}</p>}
     </div>
   );
 };

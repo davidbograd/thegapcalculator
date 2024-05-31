@@ -42,6 +42,7 @@ const Result: React.FC<Props> = ({
   hasPartner,
   resultShowing,
 }) => {
+  // if
   let resultsOpacityClass = resultShowing ? "mt-16" : "mt-16 opacity-50";
 
   return (
@@ -68,11 +69,11 @@ const Result: React.FC<Props> = ({
               $?
             </p>
           )}
-          {resultShowing ? (
+          {resultShowing && (
             <p className="text-stone-800 text-lg md:text-xl px-0.5 font-bold text-center">
               in lost income.
             </p>
-          ) : null}
+          )}
         </div>
       </div>
 
@@ -146,7 +147,7 @@ const Result: React.FC<Props> = ({
           ) : null} */}
         </div>
 
-        {hasPartner ? (
+        {hasPartner && (
           <div
             id="calculationDetails"
             className="p-6 flex-1 bg-stone-100 rounded-md"
@@ -217,7 +218,7 @@ const Result: React.FC<Props> = ({
               </p>
             ) : null} */}
           </div>
-        ) : null}
+        )}
       </div>
     </div>
   );

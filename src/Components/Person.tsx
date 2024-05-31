@@ -30,12 +30,12 @@ const Person = ({
   const personalisedPlaceholder =
     index == 0
       ? {
-          salary: "Enter annual salary",
+          salary: "Enter salary",
           totalLeave: "Eg. 40",
           companyPaidLeave: "Eg. 8",
         }
       : {
-          salary: "Enter annual salary",
+          salary: "Enter salary",
           totalLeave: "Eg. 10",
           companyPaidLeave: "Eg. 2",
         };
@@ -54,6 +54,7 @@ const Person = ({
           label="Annual salary"
           placeholder={personalisedPlaceholder.salary}
           value={person.annualSalary}
+          description="Salary excluding super"
           dollarOrWeek="dollar"
           onChange={(newValue: string) =>
             handlePersonDataChange(newValue, index, "annualSalary")
@@ -61,9 +62,10 @@ const Person = ({
         />
 
         <Field
-          label="Total Leave"
+          label="Total leave"
           placeholder={personalisedPlaceholder.totalLeave}
           value={person.totalLeave}
+          description="How many weeks of leave are taking in total?"
           dollarOrWeek="week"
           onChange={(newValue: string) =>
             handlePersonDataChange(newValue, index, "totalLeave")
@@ -74,6 +76,7 @@ const Person = ({
           label="Company paid leave"
           placeholder={personalisedPlaceholder.companyPaidLeave}
           value={person.companyPaidLeave}
+          description="Weeks with full pay from company"
           dollarOrWeek="week"
           onChange={(newValue: string) =>
             handlePersonDataChange(newValue, index, "companyPaidLeave")
