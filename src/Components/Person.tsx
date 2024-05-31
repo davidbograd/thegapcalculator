@@ -49,7 +49,7 @@ const Person = ({
       <p className="text-xs text-slate-500 font-bold mb-4">
         {index == 0 ? "PRIMARY" : "SECONDARY"} CARER
       </p>
-      <div className="flex flex-wrap gap-4">
+      <div className="flex flex-wrap gap-8 sm:gap-4">
         <Field
           label="Annual salary"
           placeholder={personalisedPlaceholder.salary}
