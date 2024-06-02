@@ -19,8 +19,25 @@ const Field = ({
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
 
+  // Restrict input to numbers
+  // const handleChange = (
+  //   inputValue: string,
+  //   setValue: React.Dispatch<React.SetStateAction<string>>
+  // ) => {
+  //   const inputRegex = /^[0-9]*$/; // Regular expression to match only numbers
+
+  //   if (inputRegex.test(inputValue) || inputValue === "") {
+  //     setValue(inputValue);
+  //   }
+  // };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
+    const newValue = event.target.value;
+
+    //Filter out non-numeric characters
+    if (/^\d*$/.test(newValue)) {
+      onChange(newValue);
+    }
   };
 
   const handleFocus = () => {
