@@ -62,10 +62,10 @@ const Person = ({
         />
 
         <Field
-          label="Total leave"
+          label="Total parental leave"
           placeholder={personalisedPlaceholder.totalLeave}
           value={person.totalLeave}
-          description="How many weeks of leave are taking in total?"
+          description="How many weeks of parental leave are you taking in total?"
           dollarOrWeek="week"
           onChange={(newValue: string) =>
             handlePersonDataChange(newValue, index, "totalLeave")

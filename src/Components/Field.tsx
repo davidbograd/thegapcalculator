@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Props {
   label: string;
@@ -18,21 +18,21 @@ const Field = ({
   onChange,
 }: Props) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [displayValue, setDisplayValue] = useState(value);
 
-  // Restrict input to numbers
-  // const handleChange = (
-  //   inputValue: string,
-  //   setValue: React.Dispatch<React.SetStateAction<string>>
-  // ) => {
-  //   const inputRegex = /^[0-9]*$/; // Regular expression to match only numbers
+  // Format numbers with thousand indicators (eg 1000 -> 1,000)
+  const thousandFormattor = (num: string) => {
+    return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
 
-  //   if (inputRegex.test(inputValue) || inputValue === "") {
-  //     setValue(inputValue);
-  //   }
-  // };
+  // Monitor change in value, and update displayValue
+  useEffect(() => {
+    setDisplayValue(thousandFormattor(value));
+  }, [value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
+    // Remove commas before using the value
+    const newValue = event.target.value.replace(/,/g, "");
 
     //Filter out non-numeric characters
     if (/^\d*$/.test(newValue)) {
@@ -74,7 +74,7 @@ const Field = ({
           className={inputClassName}
           type="text"
           required
-          value={value}
+          value={displayValue}
           placeholder={placeholder}
           onChange={handleChange}
           onFocus={handleFocus}
