@@ -4,13 +4,20 @@ function numberRounded(x: number) {
 }
 
 // Add , every thousands
-function numberWithCommas(x: any) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+function numberWithCommas(x: string) {
+  return x.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 // Format numbers
 export function numberFormatted(x: number) {
-  const roundedNumber = numberRounded(x);
+  const isNegative = x < 0;
+  const absoluteValue = Math.abs(x);
+  const roundedNumber = numberRounded(absoluteValue);
   const numberWithCommasResult = numberWithCommas(roundedNumber);
-  return numberWithCommasResult;
+
+  return isNegative
+    ? // if negative, put minus before
+      `-$${numberWithCommasResult}`
+    : // if positive, put plus before
+      `+$${numberWithCommasResult}`;
 }

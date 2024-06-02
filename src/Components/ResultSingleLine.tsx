@@ -52,7 +52,7 @@ const ResultSingleLine = ({
         <p className={standardLine.numberStyleNotShown}>$?</p>
       ) : (
         <p className={standardLine.numberStyleShown}>
-          ${numberFormatted(lineNumber)}
+          {numberFormatted(lineNumber)}
         </p>
       )}
     </div>

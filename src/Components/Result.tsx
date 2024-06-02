@@ -62,7 +62,7 @@ const Result: React.FC<Props> = ({
           )}
           {resultShowing ? (
             <p className="text-stone-800 text-4xl md:text-5xl font-bold mb-2 text-center bg-purple-200 inline p-2 my-2">
-              ${numberFormatted(outcome)}
+              {numberFormatted(outcome)}
             </p>
           ) : (
             <p className="text-stone-800 text-4xl md:text-5xl font-bold mb-2 text-center bg-purple-200 inline p-2 my-2">
@@ -85,7 +85,7 @@ const Result: React.FC<Props> = ({
           <div className="flex justify-between items-center">
             <h2 className="text-stone-700 font-bold text-xl">Primary carer</h2>
             <p className="text-stone-700 text-xl font-bold text-center bg-purple-200 inline p-1">
-              ${!resultShowing ? "?" : numberFormatted(primary.outcome)}
+              {!resultShowing ? "?" : numberFormatted(primary.outcome)}
             </p>
           </div>
 
@@ -157,7 +157,7 @@ const Result: React.FC<Props> = ({
                 Secondary carer
               </h2>
               <p className="text-stone-700 text-xl font-bold text-center bg-purple-200 inline p-1">
-                ${!resultShowing ? "?" : numberFormatted(secondary.outcome)}
+                {!resultShowing ? "?" : numberFormatted(secondary.outcome)}
               </p>
             </div>
 
