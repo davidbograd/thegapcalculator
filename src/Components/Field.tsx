@@ -28,7 +28,9 @@ const Field = ({
   };
 
   const handleBlur = () => {
-    setIsFocused(false);
+    setTimeout(() => {
+      setIsFocused(false);
+    }, 100);
   };
 
   const inputClassName =
