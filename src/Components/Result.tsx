@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { numberFormatted } from "./numberFormatter";
 import ResultSingleLine from "./ResultSingleLine";
 
@@ -44,6 +45,11 @@ const Result: React.FC<Props> = ({
 }) => {
   // if
   let resultsOpacityClass = resultShowing ? "mt-16" : "mt-16 opacity-50";
+  const [detailAccordionIsOpen, setDetailAccordionIsOpen] = useState(false);
+
+  const toggleAccordion = () => {
+    setDetailAccordionIsOpen(!detailAccordionIsOpen);
+  };
 
   return (
     <div className={resultsOpacityClass}>
@@ -94,48 +100,57 @@ const Result: React.FC<Props> = ({
             lineNumber={-primary.lost.total}
             resultShowing={resultShowing}
             style={2}
+            toggleAccordion={toggleAccordion}
           />
+          {detailAccordionIsOpen && (
+            <>
+              <ResultSingleLine
+                label="Income lost"
+                lineNumber={-primary.lost.income}
+                resultShowing={resultShowing}
+                style={1}
+              />
 
-          <ResultSingleLine
-            label="Income lost"
-            lineNumber={-primary.lost.income}
-            resultShowing={resultShowing}
-            style={1}
-          />
-
-          <ResultSingleLine
-            label="Super lost"
-            lineNumber={-primary.lost.super}
-            resultShowing={resultShowing}
-            style={1}
-          />
+              <ResultSingleLine
+                label="Super lost"
+                lineNumber={-primary.lost.super}
+                resultShowing={resultShowing}
+                style={1}
+              />
+            </>
+          )}
 
           <ResultSingleLine
             label="Total parental leave pay"
             lineNumber={primary.pay.total}
             resultShowing={resultShowing}
             style={2}
+            toggleAccordion={toggleAccordion}
           />
-          <ResultSingleLine
-            label="Pay (employer)"
-            lineNumber={primary.pay.employer}
-            resultShowing={resultShowing}
-            style={1}
-          />
+          {detailAccordionIsOpen && (
+            <>
+              <ResultSingleLine
+                label="Pay (employer)"
+                lineNumber={primary.pay.employer}
+                resultShowing={resultShowing}
+                style={1}
+              />
 
-          <ResultSingleLine
-            label="Pay (government)"
-            lineNumber={primary.pay.government}
-            resultShowing={resultShowing}
-            style={1}
-          />
+              <ResultSingleLine
+                label="Pay (government)"
+                lineNumber={primary.pay.government}
+                resultShowing={resultShowing}
+                style={1}
+              />
 
-          <ResultSingleLine
-            label="Super (employer)"
-            lineNumber={primary.pay.super}
-            resultShowing={resultShowing}
-            style={1}
-          />
+              <ResultSingleLine
+                label="Super (employer)"
+                lineNumber={primary.pay.super}
+                resultShowing={resultShowing}
+                style={1}
+              />
+            </>
+          )}
 
           {/* {resultShowing ? (
             <p className="text-stone-800 px-0.5 mt-4">
@@ -166,48 +181,59 @@ const Result: React.FC<Props> = ({
               lineNumber={-secondary.lost.total}
               resultShowing={resultShowing}
               style={2}
+              toggleAccordion={toggleAccordion}
             />
 
-            <ResultSingleLine
-              label="Income lost"
-              lineNumber={-secondary.lost.income}
-              resultShowing={resultShowing}
-              style={1}
-            />
+            {detailAccordionIsOpen && (
+              <>
+                <ResultSingleLine
+                  label="Income lost"
+                  lineNumber={-secondary.lost.income}
+                  resultShowing={resultShowing}
+                  style={1}
+                />
 
-            <ResultSingleLine
-              label="Super lost"
-              lineNumber={-secondary.lost.super}
-              resultShowing={resultShowing}
-              style={1}
-            />
+                <ResultSingleLine
+                  label="Super lost"
+                  lineNumber={-secondary.lost.super}
+                  resultShowing={resultShowing}
+                  style={1}
+                />
+              </>
+            )}
 
             <ResultSingleLine
               label="Total parental leave pay"
               lineNumber={secondary.pay.total}
               resultShowing={resultShowing}
               style={2}
-            />
-            <ResultSingleLine
-              label="Pay (employer)"
-              lineNumber={secondary.pay.employer}
-              resultShowing={resultShowing}
-              style={1}
+              toggleAccordion={toggleAccordion}
             />
 
-            <ResultSingleLine
-              label="Pay (government)"
-              lineNumber={secondary.pay.government}
-              resultShowing={resultShowing}
-              style={1}
-            />
+            {detailAccordionIsOpen && (
+              <>
+                <ResultSingleLine
+                  label="Pay (employer)"
+                  lineNumber={secondary.pay.employer}
+                  resultShowing={resultShowing}
+                  style={1}
+                />
 
-            <ResultSingleLine
-              label="Super (employer)"
-              lineNumber={secondary.pay.super}
-              resultShowing={resultShowing}
-              style={1}
-            />
+                <ResultSingleLine
+                  label="Pay (government)"
+                  lineNumber={secondary.pay.government}
+                  resultShowing={resultShowing}
+                  style={1}
+                />
+
+                <ResultSingleLine
+                  label="Super (employer)"
+                  lineNumber={secondary.pay.super}
+                  resultShowing={resultShowing}
+                  style={1}
+                />
+              </>
+            )}
 
             {/* {resultShowing ? (
               <p className="text-stone-800 px-0.5 mt-4">

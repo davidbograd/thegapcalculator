@@ -5,6 +5,7 @@ interface Props {
   lineNumber: number;
   resultShowing: boolean;
   style: number;
+  toggleAccordion?: () => void;
 }
 
 const ResultSingleLine = ({
@@ -12,6 +13,7 @@ const ResultSingleLine = ({
   lineNumber,
   resultShowing,
   style,
+  toggleAccordion,
 }: Props) => {
   // If results isn't showing and style is 2, return null
   if (!resultShowing && style !== 2) {
@@ -46,7 +48,10 @@ const ResultSingleLine = ({
     style === 1 ? "flex justify-between mt-1" : "flex justify-between mt-4";
 
   return (
-    <div className={marginSpacing}>
+    <div
+      className={marginSpacing}
+      {...(toggleAccordion && { onClick: toggleAccordion })}
+    >
       <p className={standardLine.labelStyle}>{label}</p>
       {!resultShowing ? (
         <p className={standardLine.numberStyleNotShown}>$?</p>
