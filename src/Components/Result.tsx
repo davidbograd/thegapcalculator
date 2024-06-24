@@ -246,6 +246,16 @@ const Result: React.FC<Props> = ({
           </div>
         )}
       </div>
+      {resultShowing && (
+        <button
+          onClick={() => toggleAccordion()}
+          className="mt-4 bg-stone-100 hover:bg-stone-200 focus:outline-none focus:ring focus:ring-indigo-300 active:bg-stone-200 px-6 md:px-8 py-3 md:text-lg rounded-lg font-normal w-full"
+        >
+          {detailAccordionIsOpen
+            ? "Hide calculation details"
+            : "Show calculation details"}
+        </button>
+      )}
     </div>
   );
 };

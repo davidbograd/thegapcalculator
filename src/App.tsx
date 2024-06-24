@@ -77,18 +77,6 @@ function App() {
     LeaveCostCalc(formattedPersonData, hasPartner)
   );
 
-  // Restrict input to numbers
-  // const handleChange = (
-  //   inputValue: string,
-  //   setValue: React.Dispatch<React.SetStateAction<string>>
-  // ) => {
-  //   const inputRegex = /^[0-9]*$/; // Regular expression to match only numbers
-
-  //   if (inputRegex.test(inputValue) || inputValue === "") {
-  //     setValue(inputValue);
-  //   }
-  // };
-
   const handleButtonClick = () => {
     console.log("Clickhandler ran");
     // Check if primary person input is empty
@@ -101,11 +89,7 @@ function App() {
       return;
     } else {
       // New calc
-      const updatedResultData = LeaveCostCalc(
-        // parseFloat(personData[0].annualSalary),
-        formattedPersonData,
-        hasPartner
-      );
+      const updatedResultData = LeaveCostCalc(formattedPersonData, hasPartner);
 
       // Set the new calc to resultData
       setResultData(updatedResultData);
@@ -130,7 +114,7 @@ function App() {
           your parental leave
         </h1>
         <p className="text-stone-600 text-lg md:text-xl font-medium text-center mt-4">
-          Understand it. Get ideas how to deal with it.
+          Australian based tool to see the financial impact of parental leave
         </p>
 
         <Person
