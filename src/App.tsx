@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SiteLogo from "./Components/SiteLogo.tsx";
 import { LeaveCostCalc } from "./Components/calculation.ts";
 import Person from "./Components/Person.tsx";
@@ -12,14 +12,14 @@ function App() {
       annualSalary: "",
       totalLeave: "",
       companyPaidLeave: "",
-      governmentPaidLeave: "18",
+      governmentPaidLeave: "20",
     },
     {
       carer: "Secondary",
       annualSalary: "",
       totalLeave: "",
       companyPaidLeave: "",
-      governmentPaidLeave: "2",
+      governmentPaidLeave: "0",
     },
   ]);
 
@@ -73,6 +73,22 @@ function App() {
       return updatedPersonData;
     });
   };
+
+  // Change gov paid leave depending on partner or not
+  useEffect(() => {
+    if (hasPartner) {
+      setPersonData((prevState) => [
+        { ...prevState[0], governmentPaidLeave: "20" },
+        { ...prevState[1], governmentPaidLeave: "2" },
+      ]);
+    } else {
+      setPersonData((prevState) => [
+        { ...prevState[0], governmentPaidLeave: "22" },
+        { ...prevState[1], governmentPaidLeave: "0" },
+      ]);
+    }
+  }, [hasPartner]);
+
   const [resultData, setResultData] = useState(
     LeaveCostCalc(formattedPersonData, hasPartner)
   );
@@ -85,9 +101,22 @@ function App() {
       personData[0].totalLeave == "" ||
       personData[0].companyPaidLeave == ""
     ) {
-      alert("Please fill in all details");
+      alert("Please fill all details for primary carer");
       return;
     } else {
+      // Check if secondary input is empty
+      if (hasPartner) {
+        // Check another condition related to the partner
+        if (
+          personData[1].annualSalary === "" ||
+          personData[1].totalLeave === "" ||
+          personData[1].companyPaidLeave === ""
+        ) {
+          alert("Please fill all details for secondary carer");
+          return;
+        }
+      }
+
       // New calc
       const updatedResultData = LeaveCostCalc(formattedPersonData, hasPartner);
 
