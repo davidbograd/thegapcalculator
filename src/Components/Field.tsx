@@ -74,6 +74,7 @@ const Field = ({
           className={inputClassName}
           type="text"
           required
+          inputMode="numeric"
           value={displayValue}
           placeholder={placeholder}
           onChange={handleChange}
