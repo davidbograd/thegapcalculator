@@ -54,7 +54,7 @@ export function LeaveCostCalc(
     const companyPaidWeekRate = leaveDetailsIndividual[index].salary / 52;
 
     // Set fixed super rate
-    const superannuationRate = 0.11;
+    const superannuationRate = 0.115;
     // Set gov rate depending on hasPartner, and different rates if true.
     // If salary for single is over $168865, set gov paid to 0.
     // If salary for couple is over $350000, set gov paid to 0.
